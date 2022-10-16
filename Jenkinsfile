@@ -31,7 +31,7 @@ pipeline {
         stage('Ejecucion de script SQL') {
             steps {
                 echo "Voy a ejecutar un script SQL"
-                sh "mysql -u root -p rose < C:\\test2\\01_inventariodb_countproducts.sql"
+                sh "mysql -h localhost -P 3306 -u root -prose -D inventariodb < C:\\test2\\01_inventariodb_countproducts.sql"
                 echo "Ejecutado el script SQL"
             }
         }
