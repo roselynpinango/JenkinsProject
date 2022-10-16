@@ -11,6 +11,15 @@ pipeline {
                 echo "Respaldado el directorio"
             }
         }
+        stage('Descargar repositorio de GitHub') {
+            steps {
+                echo "Voy a descargar el repositorio desde GitHub"
+                checkout([$class: 'GitSCM',
+                        branches: [[name: 'main']],
+                        userRemoteConfigs: [[url: 'https://github.com/roselynpinango/JenkinsProject.git']]])
+                echo "Descargado el repositorio desde GitHub"
+            }
+        }
         stage('Copiar archivos de un lugar a otro') { // for display purposes
             steps {
                 echo "Voy a copiar los archivos de un directorio a otro"
