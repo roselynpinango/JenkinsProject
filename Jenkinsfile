@@ -22,7 +22,6 @@ pipeline {
   }
   post {
       always {          
-          //deleteDir()
            sh "echo 'fase always'"
       }
       success {
