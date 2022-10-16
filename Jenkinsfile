@@ -6,8 +6,7 @@ pipeline {
     stages {
         stage('Ejecutar Tareas de Respaldo') {
             steps {
-                echo "Voy a respaldar un directorio ${BUILD_TIMESTAMP}" 
-                // Falta agregar la fecha actual al respaldo ${BUILD_TIMESTAMP}
+                echo "Voy a respaldar un directorio"
                 fileOperations([fileZipOperation(folderPath: 'C:\\test1', outputFolderPath: 'C:\\respaldo'+"${BUILD_TIMESTAMP}")])
                 echo "Respaldado el directorio"
             }
