@@ -4,7 +4,7 @@ def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
 pipeline {
-  agent { label 'main' }
+  agent any
   environment {
     appName = "variable" 
   }
@@ -15,6 +15,7 @@ pipeline {
       steps {
           script {			
            sh "echo 'hola mundo'"
+           sh "echo ${BUILD_NUMBER}"
         }
       }
     }
