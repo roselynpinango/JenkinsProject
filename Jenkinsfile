@@ -19,7 +19,7 @@ pipeline {
                 echo "Copié los archivos de un directorio a otro"
             }
         }
-        stage('Ejecución de script SQL') {
+        stage('Ejecucion de script SQL') {
             steps {
                 echo "Voy a ejecutar un script SQL"
                 // Pendiente 
@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Resultado') {
             steps {
-                echo "Todo salió genial!"
+                echo "Todo salio genial!"
                 echo "Comenzando a enviar el correo"
                 mail bcc: '', body: '$DEFAULT_CONTENT', cc: '', from: 'roselyn.pinango@gmail.com', replyTo: 'roselyn.pinango@gmail.com', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'roselyn.pinango@gmail.com'
                 //emailext body: '$DEFAULT_CONTENT', recipientProviders: [requestor()], subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'roselyn.pinango@gmail.com'
