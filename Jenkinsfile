@@ -30,7 +30,7 @@ pipeline {
         stage('Ejecucion de script SQL') {
             steps {
                 echo "Voy a ejecutar un script SQL"
-                // Pendiente 
+                sh "mysql -u root -p rose < C:\\test2\\01_inventariodb_countproducts.sql"
                 echo "Ejecutado el script SQL"
             }
         }
