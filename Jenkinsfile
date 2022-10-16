@@ -4,7 +4,7 @@ def jsonParse(def json) {
     new groovy.json.JsonSlurperClassic().parseText(json)
 }
 pipeline {
-  agent { label 'principal' }
+  agent { label 'main' }
   environment {
     appName = "variable" 
   }
@@ -21,7 +21,7 @@ pipeline {
   }
   post {
       always {          
-          deleteDir()
+          //deleteDir()
            sh "echo 'fase always'"
       }
       success {
