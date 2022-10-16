@@ -31,7 +31,7 @@ pipeline {
         stage('Ejecucion de script SQL') {
             steps {
                 echo "Voy a ejecutar un script SQL"
-                bat "'C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe' -h localhost -P 3306 -u root -prose -D inventariodb < C:\\test2\\01_inventariodb_countproducts.sql"
+                bat "'C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe' -h localhost -P 3306 -u root -prose -D inventariodb < 'C:\\test2\\01_inventariodb_countproducts.sql'"
                 echo "Ejecutado el script SQL"
             }
         }
