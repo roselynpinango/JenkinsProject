@@ -15,7 +15,6 @@ pipeline {
       steps {
           script {			
            sh "echo 'hola mundo'"
-           sh "echo ${BUILD_NUMBER}"
         }
       }
     }
