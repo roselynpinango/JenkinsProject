@@ -6,9 +6,9 @@ pipeline {
     stages {
         stage('Ejecutar Tareas de Respaldo') {
             steps {
-                echo "Voy a respaldar un directorio"
+                echo "Voy a respaldar un directorio ${BUILD_TIMESTAMP}" 
                 // Falta agregar la fecha actual al respaldo ${BUILD_TIMESTAMP}
-                fileOperations([fileZipOperation(folderPath: 'C:\\test1', outputFolderPath: 'C:\\respaldo')])
+                fileOperations([fileZipOperation(folderPath: 'C:\\test1', outputFolderPath: 'C:\\respaldo'+"${BUILD_TIMESTAMP}")])
                 echo "Respaldado el directorio"
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                 echo "Descargado el repositorio desde GitHub"
             }
         }
-        stage('Copiar archivos de un lugar a otro') { // for display purposes
+        stage('Copiar archivos de un lugar a otro') { 
             steps {
                 echo "Voy a copiar los archivos de un directorio a otro"
                 fileOperations([folderCopyOperation(destinationFolderPath: 'C:\\test2', sourceFolderPath: 'C:\\test1')])
