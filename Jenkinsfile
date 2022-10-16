@@ -1,16 +1,16 @@
 pipeline {
     agent any
     environment {
-        backupName = 'C:\\respaldo' + sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
+        currentDate = sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
     }
     parameters {
-        choice(name: 'ENVIRONMENT', choices: ['INT', 'QA', 'PROD', ], description: 'Run test on (int or qa or prod)')
+        choice(name: 'ENVIRONMENT', choices: ['INT', 'QA', 'PROD', ], description: 'Run test on (INT or QA or PROD)')
     }
     stages {
         stage('Ejecutar Tareas de Respaldo') {
             steps {
                 echo "Voy a respaldar un directorio"
-                fileOperations([fileZipOperation(folderPath: 'C:\\test1', outputFolderPath: "${backupName}")])
+                fileOperations([fileZipOperation(folderPath: 'C:\\test1', outputFolderPath: 'C:\\respaldo' + "${currentDate}")])
                 echo "Respaldado el directorio"
             }
         }
