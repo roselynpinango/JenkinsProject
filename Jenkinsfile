@@ -4,14 +4,14 @@ pipeline {
         choice(name: 'ENVIRONMENT', choices: ['INT', 'QA', 'PROD', ], description: 'Run test on (INT or QA or PROD)')
     }
     stages {
-        stage('Ejecutar Tareas de Respaldo') {
+        stage('1 - Ejecutar Tareas de Respaldo') {
             steps {
                 echo "Voy a respaldar un directorio"
                 fileOperations([fileZipOperation(folderPath: 'C:\\test1', outputFolderPath: 'C:\\respaldo'+"${BUILD_TIMESTAMP}")])
                 echo "Respaldado el directorio"
             }
         }
-        stage('Descargar repositorio de GitHub') {
+        stage('2 - Descargar repositorio de GitHub') {
             steps {
                 echo "Voy a descargar el repositorio desde GitHub"
                 checkout([$class: 'GitSCM',
@@ -20,21 +20,28 @@ pipeline {
                 echo "Descargado el repositorio desde GitHub"
             }
         }
-        stage('Copiar archivos de un lugar a otro') { 
+        stage('3 - Copiar archivos de un lugar a otro') { 
             steps {
                 echo "Voy a copiar los archivos de un directorio a otro"
                 fileOperations([folderCopyOperation(destinationFolderPath: 'C:\\test2', sourceFolderPath: 'C:\\test1')])
                 echo "Copiados los archivos de un directorio a otro"
             }
         }
-        stage('Ejecucion de script SQL') {
+        stage('4 - Ejecucion de script SQL') {
             steps {
                 echo "Voy a ejecutar un script SQL"
                 bat "\"C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe\" -h localhost -P 3306 -u root -prose -D inventariodb < C:\\test2\\01_inventariodb_countproducts.sql"
                 echo "Ejecutado el script SQL"
             }
         }
-        stage('Envio de Notificacion por correo') {
+        stage('5 - Ejecucion de tests') {
+            steps {
+                echo "Iniciando la ejecucion de tests"
+                bat "\"C:\\Program Files\\nodejs\\npx\" cypress run --spec \"C:\\Users\\Lenovo\\OneDrive\\Documents\\Rose\\JenkinsPoC\\cypress\\e2e\\test_PlatformGroup.cy.js\" --reporter mochawesome --reporter-options reportDir=customReportDir,reportFilename=customReportFilename"
+                echo "Culminada la ejecucion de tests"
+            }
+        }
+        stage('6 - Envio de Notificacion por correo') {
             steps {
                 echo "Todo salio genial!"
                 echo "Comenzando a enviar el correo"
