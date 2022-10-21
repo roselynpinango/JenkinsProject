@@ -38,7 +38,7 @@ pipeline {
         stage('5 - Ejecucion de tests') {
             steps {
                 echo "Iniciando la ejecucion de tests"
-                bat "\"C:\\Program Files\\nodejs\\npx\" cypress run --spec \"C:\\Users\\Lenovo\\OneDrive\\Documents\\Rose\\JenkinsPoC\\Cypress_Test\\cypress\\e2e\\test_PlatformGroup.cy.js\" --reporter \"C:\\Users\\Lenovo\\OneDrive\\Documents\\Rose\\JenkinsPoC\\Cypress_Test\\node_modules\\mochawesome\" --reporter-options reportDir=customReportDir,reportFilename=customReportFilename --config-file \"C:\\Users\\Lenovo\\OneDrive\\Documents\\Rose\\JenkinsPoC\\Cypress_Test\\cypress.config.js\""
+                bat "\"C:\\Program Files\\nodejs\\npx\" cypress run --spec \"C:\\Users\\Lenovo\\OneDrive\\Documents\\Rose\\JenkinsPoC\\Cypress_Test\\cypress\\e2e\\test_PlataformaGroup.cy.js\" --reporter \"C:\\Users\\Lenovo\\OneDrive\\Documents\\Rose\\JenkinsPoC\\Cypress_Test\\node_modules\\mochawesome\" --reporter-options reportDir=customReportDir,reportFilename=customReportFilename --config-file \"C:\\Users\\Lenovo\\OneDrive\\Documents\\Rose\\JenkinsPoC\\Cypress_Test\\cypress.config.js\""
                 echo "Culminada la ejecucion de tests"
             }
         }
