@@ -2,6 +2,7 @@ pipeline {
     agent any
     parameters {
         choice(name: 'ENVIRONMENT', choices: ['INT', 'QA', 'PROD', ], description: 'Run test on (INT or QA or PROD)')
+        choice(name: 'CUSTOMER', choices: ['Customer 1', 'Customer 2', 'Customer 3', 'Customer 4', 'ALL', ], description: 'Deploy for specific customer')
     }
     stages {
         stage('1 - Ejecutar Tareas de Respaldo') {
